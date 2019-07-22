@@ -25,3 +25,34 @@ npm install
 
 #Para fazer a compactação dos arquivos utilizar o comando:
 npm run dev
+
+#Para criar uma migration já criando uma tabela chamada produtos
+php artisan make:migration criar_tabela_produtos --create=produtos
+
+#Para criar as tabelas de acordo com os migrations criados;
+php artisan migrate
+
+#Para voltar atrás do última alteração no banco
+php artisan migrate:rollback
+
+#Para voltar o banco ao original
+#Apaga toda a base de dados e começa do zero a instalação;
+php artisan migrate:fresh
+
+# O reset é como se a gente não tivesse feito nada. Apaga todas as tabelas
+# Deixa somente a table migrations
+php artisan migrate:reset
+
+# Saber o status de cada uma das migrations
+# Por exemplo se eu criei uma migration, porém não executei ela no banco
+# Ou seja, não efetivou o arquivo no banco de dados, o status mostra isto.
+php artisan migrate:status
+
+#No laravel tem o que é chamado de seed que é uma forma de já inserir alguns dados 
+# na migrations de forma "manual", é como se eu estivesse forçando o insert para isto
+#executar o comando:
+php artisan make:seeder NomeTabelaSeeder
+
+apos criar, fazer o array e utilizar o comando 
+
+php artisan db:seed
