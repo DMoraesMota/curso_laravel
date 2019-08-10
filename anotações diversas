@@ -37,6 +37,7 @@ php artisan migrate:rollback
 
 #Para voltar o banco ao original
 #Apaga toda a base de dados e começa do zero a instalação;
+# Vai dar drop em todas as tabela e vai recriar tudo novamente
 php artisan migrate:fresh
 
 # O reset é como se a gente não tivesse feito nada. Apaga todas as tabelas
