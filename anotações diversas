@@ -27,9 +27,10 @@ package.json
 #para instalar as dependencias do projeto o comando é:
 apt install npm
 apt install autoconf
-npm install
+
 
 #Para fazer a compactação dos arquivos utilizar o comando:
+npm install
 npm run dev
 
 #Para criar uma migration já criando uma tabela chamada produtos
