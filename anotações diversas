@@ -5,7 +5,13 @@ export COMPOSER_ALLOW_SUPERUSER=1; composer show;
 composer create-project --prefer-dist laravel/laravel Nome_PROJECTO
 
 #INICAR O DOCKER COM COMPARTILHAMENTO DE PASTA
-docker run -it -v /home/diego/Projetos/PHP/Estudos_Laravel:/home/ -p 8000:8000 laravel:1.0 /bin/bash 
+#docker run -it -v /home/diego/Projetos/PHP/Estudos_Laravel:/home/ -p 8000:8000 laravel:1.0 /bin/bash 
+
+#Iniciando através do docker composer
+docker-compose up -d
+
+#Para entrar nos container
+docker exec -it NOME_CONTAINER /bin/bash
 
 #Para criar um novo controladro
 php artisan make:controller NOME_CONTROLADOR
