@@ -3,7 +3,7 @@
 @section('body')
     <div class="card border">
         <div class="card-body">
-            <h5 class="card-title">Cadastro de Categorias</h5>
+            <h5 class="card-title">Categorias</h5>
 
             @if(count($cats) > 0)
                 <table class="table table-ordered table-hover">
