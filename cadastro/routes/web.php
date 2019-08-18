@@ -15,11 +15,14 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/produtos', 'ControladorProduto@index');
+// Açoes com o cadastro de categorias
 Route::get('/categorias', 'ControladorCategoria@index');
 Route::get('/categorias/novo', 'ControladorCategoria@create');
 Route::post('/categorias', 'ControladorCategoria@store');
 Route::get('/categorias/apagar/{id}', 'ControladorCategoria@destroy');
-
 Route::get('/categorias/editar/{id}', 'ControladorCategoria@edit');
 Route::post('/categorias/{id}', 'ControladorCategoria@update');
+
+//Ações com cadastro de produtos.
+Route::get('/produtos', 'ControladorProduto@index');
+Route::get('/produtos/novo', 'ControladorProduto@create');
