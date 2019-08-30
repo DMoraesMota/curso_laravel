@@ -21,5 +21,11 @@ Route::get('/categorias', 'ControladorCategoria@indexJson');
 
 Route::get('/produtos', 'ControladorProduto@index');
 
-Route::post('/produtos', 'ControladorProduto@store');
+Route::post('/produtos', 'ControladorProduto@store')->name('api.produto.store');;
+
+Route::Delete('/produtos/{id}', 'ControladorProduto@destroy')->name('api.produto.destroy');
+
+Route::get('/produtos/{id}', 'ControladorProduto@show')->name('api.produto.show');
+
+Route::put('/produtos/{id}', 'ControladorProduto@update')->name('api.produto.put');
 

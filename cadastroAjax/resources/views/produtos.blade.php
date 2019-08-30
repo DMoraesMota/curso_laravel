@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <input type="hidden" name="id" class="form-control">
+                    <input type="hidden" id="id" name="id" class="form-control">
 
                     <div class="form-group">
                         <label for="nomeProduto" class="control-label">Nome do Produto</label>
@@ -135,12 +135,38 @@
         
     }
 
+
+
     $("#formProduto").submit( function(event){
             event.preventDefault(); //Tirando o refresh que a tela da sempre ao clicar no botao
-            criarProduto();
+            if($("#id").val() != ''){
+                salvarProduto();
+            } else {
+                criarProduto();
+            }
             $("#dlgProdutos").modal('hide');
         }
     );
+
+    function remover(id){
+        $.ajax({
+            type: "DELETE",
+            url:  "/api/produtos/" + id,
+            context: this,
+            success: function (){
+                console.log('Tudo Apagado');
+                linhas = $("#tabelaProdutos>tbody>tr");
+                e = linhas.filter( function(i, elemento) {
+                    return elemento.cells[0].textContent == id;
+                 });
+                 if(e)
+                    e.remove();
+            },
+            error: function(){
+                console.log(error);
+            }
+        });
+    }
 
     function montarLinha(p){
         var linha = "<tr>" +
@@ -150,11 +176,60 @@
                         "<td>"+ p.preco + "</td>" +
                         "<td>"+ p.categoria_id + "</td>" +
                         "<td>" +
-                            '<button class="btn btn-sm btn-primary"> Editar </button> ' +
-                            '<button class="btn btn-sm btn-danger"> Cancelar </button>' +
+                            '<button class="btn btn-sm btn-primary" onclick="editar(' + p.id +')"> Editar </button> ' +
+                            '<button class="btn btn-sm btn-danger" onclick="remover(' + p.id +')"> Apagar </button>' +
                         "</td>" +
                     "</tr>";    
         return linha;
+    }
+
+    function editar(id){
+        $.getJSON('/api/produtos/'+id, function(data){
+           console.log(data);
+           $('#id').val(data.id);
+           $('#nomeProduto').val(data.nome);
+           $('#precoProduto').val(data.preco);
+           $('#quantidadeProduto').val(data.estoque);
+           $('#categoriaProduto').val(data.categoria_id);           
+           $('#dlgProdutos').modal('show');
+        });
+    }
+
+    function salvarProduto(){
+        prod = {
+            id: $('#id').val(),
+            nome: $('#nomeProduto').val(),
+            estoque : $('#quantidadeProduto').val(),
+            preco : $('#precoProduto').val(),
+            categoria_id : $('#categoriaProduto').val()
+         };   
+         
+         $.ajax({
+            type: "PUT",
+            url:  "/api/produtos/" + prod.id,
+            context: this,
+            data: prod,
+            success: function (data){
+                prod = JSON.parse(data);
+                linhas = $('#tabelaProdutos>tbody>tr');
+                e = linhas.filter( function (i, e){
+                    return (
+                        e.cells[0].textContent == prod.id
+                    );
+                });
+                
+                if(e){
+                   e[0].cells[0].textContent = prod.id;
+                   e[0].cells[1].textContent = prod.nome;
+                   e[0].cells[2].textContent = prod.estoque;
+                   e[0].cells[3].textContent = prod.preco;
+                   e[0].cells[4].textContent = prod.categoria_id;
+                }
+            },
+            error: function(){
+                console.log(error);
+            }
+        });
     }
 
     $(function(){
