@@ -4,6 +4,9 @@ export COMPOSER_ALLOW_SUPERUSER=1; composer show;
 #Criar Projeto laravel
 composer create-project --prefer-dist laravel/laravel Nome_PROJECTO
 
+#MATAR TODOS OS CONTAINERS
+sudo docker rm  $(sudo docker ps -a)
+
 #INICAR O DOCKER COM COMPARTILHAMENTO DE PASTA
 #docker run -it -v /home/diego/Projetos/PHP/Estudos_Laravel:/home/ -p 8000:8000 laravel:1.0 /bin/bash 
 
