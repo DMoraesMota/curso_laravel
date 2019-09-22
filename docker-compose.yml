@@ -15,6 +15,6 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - /home/diego/Projetos/PHP/Estudos_Laravel/:/home/
+      - /home/diego/Documentos/Projetos/curso_laravel/:/home/
     ports:
       - "8000:8000"
