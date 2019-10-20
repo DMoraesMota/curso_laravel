@@ -34,7 +34,8 @@ Route::post('/login',function(Request $req){
     
     $login_ok = false;
     $admin = false;
-    switch ($req->input('user')) {
+    switch ($req->input('user')) 
+    {
         case 'joao':
             $login_ok = $req->input('password')=== "senhajoao";
             break;
@@ -47,11 +48,14 @@ Route::post('/login',function(Request $req){
             break;
     }
 
-    if($login_ok){
+    if($login_ok)
+    {
         $login = ["user" => $req->input('user'), "admin" => $admin];
         $req->session()->put('login', $login);
         return response("Login OK", 200);
-    }else{
+    }
+    else
+    {
         $req->session()->flush();
         return response("Erro Login inválido", 404);
     }
