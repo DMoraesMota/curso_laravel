@@ -1,3 +1,10 @@
+# Quando eu colocar um arquivo do GIT#
+1 - GIT CLONE
+2- composer install
+3- php artisan key:generate
+4- php artisan migrate
+
+
 #ANTES DE CRIAR O PROJETO NO LARAVEL
 export COMPOSER_ALLOW_SUPERUSER=1; composer show;
 

@@ -5,9 +5,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     container_name: mysql-container
     environment: 
-      MYSQL_ROOT_PASSWORD: laravelpass
-    volumes:
-      - /home/diego/Projetos/banco_de_dados
+      MYSQL_ROOT_PASSWORD: laravelpass    
     restart: always
   laravel: 
     image: laravel:1.0
@@ -15,6 +13,7 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - /home/diego/Documentos/Projetos/curso_laravel/:/home/
+      - //D//Diego/Documents/GIT/curso_laravel:/home/diego
     ports:
       - "8000:8000"
+      - "4200:4200"
